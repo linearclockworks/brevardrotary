@@ -2,8 +2,8 @@ backend:
   name: github
   repo: linearclockworks/brevardrotary
   branch: main
-  base_url: https://brevardrotary.vercel.app 
-  auth_endpoint: api/auth
+  base_url: https://brevardrotary.vercel.app
+  auth_endpoint: /api/auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
