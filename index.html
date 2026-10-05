@@ -212,7 +212,9 @@
                 if (data.top_banner) {
                     if (data.top_banner.badge) document.getElementById('cms-top-badge').innerHTML = `<i class="fa-solid fa-calendar-star text-xs"></i> ${data.top_banner.badge}`;
                     if (data.top_banner.message) document.getElementById('cms-top-message').innerText = data.top_banner.message;
-                    if (data.top_banner.cta_text) document.getElementById('cms-top-cta').innerText = data.top_banner.cta_text;
+                    if (data.top_banner.cta_text) {
+    document.getElementById('cms-top-cta').innerHTML = `${data.top_banner.cta_text} **`;
+}
                 }
 
                 // 2. Populate Hero
