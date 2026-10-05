@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotary Club of Brevard | Hands-On Community Impact in Transylvania County</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rotary: {
+                            blue: '#00246C',
+                            navy: '#001A4E',
+                            gold: '#F7A81B',
+                            goldHover: '#E0920B',
+                            lightBlue: '#005DAA',
+                            sky: '#E6F0FA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-overlay {
+            background: linear-gradient(180deg, rgba(0, 36, 108, 0.88) 0%, rgba(0, 26, 78, 0.95) 100%);
+        }
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(247, 168, 27, 0.35);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0, 36, 108, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-rotary-gold selection:text-rotary-navy">
+
+    <div class="bg-rotary-navy text-white text-xs md:text-sm py-2 px-4 border-b border-rotary-blue/50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-rotary-gold text-rotary-navy font-bold text-xs uppercase tracking-wide">
+                    <i class="fa-solid fa-calendar-star text-xs"></i> Next Event
+                </span>
+                <span class="text-slate-200">French Broad River Clean-up & Trail Care — <strong>This Saturday at 9:00 AM</strong></span>
+            </div>
+            <a href="#projects-section" onclick="openRsvpModal('French Broad River Clean-up', 'Saturday, 9:00 AM @ Champion Park')" class="text-rotary-gold hover:underline font-semibold flex items-center gap-1 text-xs sm:text-sm">
+                RSVP in 30 Seconds <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-full bg-rotary-blue flex items-center justify-center text-rotary-gold font-black text-2xl shadow-sm group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-dharmachakra"></i>
+                </div>
+                <div>
+                    <span class="block text-xl font-extrabold text-rotary-blue font-heading tracking-tight leading-tight">Rotary Club</span>
+                    <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Brevard & Transylvania County</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-slate-700 text-sm">
+                <a href="#about" class="hover:text-rotary-blue transition-colors">About Us</a>
+                <a href="#impact" class="hover:text-rotary-blue transition-colors">Local Projects</a>
+                <a href="#upcoming" class="hover:text-rotary-blue transition-colors">Upcoming Events</a>
+                <a href="#meeting" class="hover:text-rotary-blue transition-colors">Where We Meet</a>
+                <a href="#quiz" class="hover:text-rotary-blue transition-colors">Find Your Role</a>
+            </nav>
+
+            <!-- CTA Buttons -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="#meeting" class="px-4 py-2.5 rounded-lg border-2 border-rotary-blue text-rotary-blue font-semibold text-sm hover:bg-rotary-sky transition-all">
+                    Attend a Meeting
+                </a>
+                <a href="#upcoming" class="px-5 py-2.5 rounded-lg bg-rotary-gold text-rotary-navy font-bold text-sm hover:bg-rotary-goldHover shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-hands-holding-circle"></i> Get Involved
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-rotary-blue hover:bg-slate-100 focus:outline-none">
+                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">About Us</a>
+            <a href="#impact" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Local Projects</a>
+            <a href="#upcoming" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Upcoming Events</a>
+            <a href="#meeting" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Where We Meet</a>
+            <a href="#quiz" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Find Your Role</a>
+            <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                <a href="#meeting" onclick="toggleMobileMenu()" class="text-center py-2.5 rounded-lg border border-rotary-blue text-rotary-blue font-semibold">Attend a Meeting</a>
+                <a href="#upcoming" onclick="toggleMobileMenu()" class="text-center py-2.5 rounded-lg bg-rotary-gold text-rotary-navy font-bold">Get Involved</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="relative bg-rotary-navy text-white overflow-hidden min-h-[580px] flex items-center">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1920&q=80" alt="Brevard volunteers working together" class="w-full h-full object-cover object-center scale-105 opacity-30">
+                <div class="absolute inset-0 gradient-overlay"></div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+                <div class="max-w-3xl">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-rotary-gold text-xs sm:text-sm font-semibold mb-6">
+                        <i class="fa-solid fa-location-dot"></i> Serving Brevard, Rosman, & Transylvania County
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                        Roll up your sleeves with neighbors who <span class="text-rotary-gold underline decoration-rotary-gold/40 underline-offset-8">care deeply</span> about Brevard.
+                    </h1>
+
+                    <!-- Paragraph -->
+                    <p class="text-lg sm:text-xl text-slate-200 leading-relaxed mb-8 max-w-2xl font-light">
+                        No suit required. No bureaucracy. Just hands-on local service, supporting youth centers, cleaning trails, and building a stronger community right here in our backyard.
+                    </p>
+
+                    <!-- Dual Action CTAs -->
+                    <div class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+                        <a href="#upcoming" class="px-8 py-4 rounded-xl bg-rotary-gold hover:bg-rotary-goldHover text-rotary-navy font-extrabold text-lg shadow-xl gold-glow hover:scale-[1.02] transition-all text-center flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-person-digging"></i> Get Involved This Weekend
+                        </a>
+                        <a href="#meeting" class="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border-2 border-white/30 text-white font-bold text-lg backdrop-blur-sm transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-users"></i> Join Us For Lunch
+                        </a>
+                    </div>
+
+                    <!-- Micro-trust points -->
+                    <div class="mt-10 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs sm:text-sm text-slate-300">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-rotary-gold text-base"></i>
+                            <span>100% Local Project Focus</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-rotary-gold text-base"></i>
+                            <span>All Skills & Ages Welcome</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-rotary-gold text-base"></i>
+                            <span>Flexible Time Commitments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-rotary-blue text-white py-10 border-t border-b border-rotary-navy/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                        <div class="text-3xl sm:text-4xl font-extrabold text-rotary-gold font-heading mb-1">$45,000+</div>
+                        <div class="text-xs sm:text-sm text-slate-200 font-medium">Invested in Local Youth & Schools</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                        <div class="text-3xl sm:text-4xl font-extrabold text-rotary-gold font-heading mb-1">1,200+</div>
+                        <div class="text-xs sm:text-sm text-slate-200 font-medium">Volunteer Hours Spent Outdoors</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                        <div class="text-3xl sm:text-4xl font-extrabold text-rotary-gold font-heading mb-1">12</div>
+                        <div class="text-xs sm:text-sm text-slate-200 font-medium">Transylvania Nonprofits Partnered</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                        <div class="text-3xl sm:text-4xl font-extrabold text-rotary-gold font-heading mb-1">100%</div>
+                        <div class="text-xs sm:text-sm text-slate-200 font-medium">Hands-On Action Every Month</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="py-20 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <span class="text-rotary-blue font-bold text-sm tracking-wider uppercase">Direct Community Impact</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading mt-2">Where We Put Words Into Work</h2>
+                    </div>
+                    <p class="text-slate-600 max-w-md mt-4 md:mt-0 text-sm sm:text-base">
+                        Explore our ongoing initiatives in Brevard, Rosman, and surrounding mountain areas. Filter by your personal passion.
+                    </p>
+                </div>
+
+                <!-- Filter Pills -->
+                <div class="flex flex-wrap gap-2 mb-8" id="project-filters">
+                    <button onclick="filterProjects('all')" class="project-btn active px-4 py-2 rounded-full font-semibold text-sm bg-rotary-blue text-white shadow-sm transition-all">All Projects</button>
+                    <button onclick="filterProjects('youth')" class="project-btn px-4 py-2 rounded-full font-semibold text-sm bg-white text-slate-600 hover:bg-slate-200 transition-all border border-slate-200">Youth & Schools</button>
+                    <button onclick="filterProjects('outdoors')" class="project-btn px-4 py-2 rounded-full font-semibold text-sm bg-white text-slate-600 hover:bg-slate-200 transition-all border border-slate-200">Outdoors & Environment</button>
+                    <button onclick="filterProjects('community')" class="project-btn px-4 py-2 rounded-full font-semibold text-sm bg-white text-slate-600 hover:bg-slate-200 transition-all border border-slate-200">Community Support</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1 -->
+                    <div class="project-card youth bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm card-hover flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="TenTwentySix Youth Hub Support" class="w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 bg-rotary-navy text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Youth & Education</span>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 font-heading mb-2">TenTwentySix Youth Hub Support</h3>
+                                <p class="text-slate-600 text-sm mb-4">
+                                    Direct hands-on building, mentoring, and financial support for Transylvania County’s landmark youth center, giving local teens a safe space to grow.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-rotary-blue">
+                                <span><i class="fa-solid fa-clock"></i> Active Year-Round</span>
+                                <span><i class="fa-solid fa-users"></i> 20+ Volunteers</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="project-card outdoors bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm card-hover flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="French Broad Trail Care" class="w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 bg-emerald-700 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Outdoors</span>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 font-heading mb-2">French Broad & Estatoe Trail Care</h3>
+                                <p class="text-slate-600 text-sm mb-4">
+                                    Keeping Brevard’s iconic greenways, river corridors, and trails pristine for locals and visitors through quarterly Saturday cleanup sweeps.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-emerald-700">
+                                <span><i class="fa-solid fa-leaf"></i> Outdoor / Hands-on</span>
+                                <span><i class="fa-solid fa-calendar"></i> Next: This Sat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="project-card community bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm card-hover flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80" alt="Rosman Community Service" class="w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Community</span>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 font-heading mb-2">Rosman & Upper County Relief</h3>
+                                <p class="text-slate-600 text-sm mb-4">
+                                    Targeted projects providing food security support, storm cleanups, and winter jacket distributions for families across upper Transylvania County.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-amber-700">
+                                <span><i class="fa-solid fa-heart"></i> Direct Family Support</span>
+                                <span><i class="fa-solid fa-location-dot"></i> Rosman / Brevard</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="upcoming" class="py-20 bg-white border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="text-rotary-blue font-bold text-sm tracking-wider uppercase">Hands-On Opportunities</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading mt-2">Upcoming Volunteer Events</h2>
+                    <p class="text-slate-600 mt-3">
+                        You don't need to be a formal Rotary member to join us on any project below. Just show up and lend a hand!
+                    </p>
+                </div>
+
+                <div class="space-y-4 max-w-4xl mx-auto" id="events-list">
+                    
+                    <!-- Event 1 -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-rotary-blue transition-all">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-rotary-blue text-white rounded-xl p-3 text-center min-w-[70px] shadow-sm">
+                                <span class="block text-xs font-bold uppercase tracking-wider text-rotary-gold">OCT</span>
+                                <span class="block text-2xl font-black font-heading">12</span>
+                            </div>
+                            <div>
+                                <span class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-1">Outdoors & Environment</span>
+                                <h3 class="text-xl font-bold text-slate-900 font-heading">French Broad River Trail Sweep</h3>
+                                <p class="text-sm text-slate-600 mt-1 flex items-center gap-4 flex-wrap">
+                                    <span><i class="fa-regular fa-clock text-rotary-blue"></i> 9:00 AM – 12:00 PM</span>
+                                    <span><i class="fa-solid fa-location-dot text-rotary-blue"></i> Champion Park Trailhead, Brevard</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button onclick="openRsvpModal('French Broad River Trail Sweep', 'Saturday, Oct 12, 9:00 AM @ Champion Park')" class="w-full md:w-auto px-6 py-3 rounded-xl bg-rotary-gold text-rotary-navy font-bold text-sm hover:bg-rotary-goldHover transition-all flex items-center justify-center gap-2 shrink-0">
+                            RSVP / Join In <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-rotary-blue transition-all">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-rotary-blue text-white rounded-xl p-3 text-center min-w-[70px] shadow-sm">
+                                <span class="block text-xs font-bold uppercase tracking-wider text-rotary-gold">OCT</span>
+                                <span class="block text-2xl font-black font-heading">24</span>
+                            </div>
+                            <div>
+                                <span class="inline-block px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold mb-1">Youth Mentorship</span>
+                                <h3 class="text-xl font-bold text-slate-900 font-heading">TenTwentySix Youth Hub Career Day</h3>
+                                <p class="text-sm text-slate-600 mt-1 flex items-center gap-4 flex-wrap">
+                                    <span><i class="fa-regular fa-clock text-rotary-blue"></i> 4:00 PM – 6:30 PM</span>
+                                    <span><i class="fa-solid fa-location-dot text-rotary-blue"></i> 1026 Youth Hub, Main St Brevard</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button onclick="openRsvpModal('TenTwentySix Youth Hub Career Day', 'Thursday, Oct 24, 4:00 PM @ 1026 Youth Hub')" class="w-full md:w-auto px-6 py-3 rounded-xl bg-rotary-gold text-rotary-navy font-bold text-sm hover:bg-rotary-goldHover transition-all flex items-center justify-center gap-2 shrink-0">
+                            RSVP / Join In <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-rotary-blue transition-all">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-rotary-blue text-white rounded-xl p-3 text-center min-w-[70px] shadow-sm">
+                                <span class="block text-xs font-bold uppercase tracking-wider text-rotary-gold">NOV</span>
+                                <span class="block text-2xl font-black font-heading">08</span>
+                            </div>
+                            <div>
+                                <span class="inline-block px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 text-xs font-bold mb-1">Community Festival</span>
+                                <h3 class="text-xl font-bold text-slate-900 font-heading">Rosman Fall Community Food Drive</h3>
+                                <p class="text-sm text-slate-600 mt-1 flex items-center gap-4 flex-wrap">
+                                    <span><i class="fa-regular fa-clock text-rotary-blue"></i> 10:00 AM – 2:00 PM</span>
+                                    <span><i class="fa-solid fa-location-dot text-rotary-blue"></i> Rosman Community Center</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button onclick="openRsvpModal('Rosman Fall Community Food Drive', 'Saturday, Nov 8, 10:00 AM @ Rosman')" class="w-full md:w-auto px-6 py-3 rounded-xl bg-rotary-gold text-rotary-navy font-bold text-sm hover:bg-rotary-goldHover transition-all flex items-center justify-center gap-2 shrink-0">
+                            RSVP / Join In <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <span class="text-rotary-gold font-bold text-sm tracking-wider uppercase">Find Your Fit</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading mt-2 mb-4">How Do You Want to Help Brevard?</h2>
+                <p class="text-slate-300 max-w-xl mx-auto mb-10 text-sm sm:text-base">
+                    Select what matches your time, interest, and skills. We will show you the exact team you’d fit best with!
+                </p>
+
+                <!-- Interactive Quiz Container -->
+                <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 sm:p-10 shadow-2xl text-left">
+                    <div id="quiz-step-1">
+                        <h3 class="text-lg font-bold text-white mb-4">1. What kind of project sounds most enjoyable to you?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                            <label class="cursor-pointer border border-slate-600 rounded-xl p-4 flex items-center gap-3 hover:border-rotary-gold transition-all bg-slate-700/50">
+                                <input type="radio" name="interest" value="outdoors" class="accent-rotary-gold" checked>
+                                <div>
+                                    <div class="font-bold text-white text-sm"><i class="fa-solid fa-tree text-rotary-gold mr-2"></i> Outdoor Trails & Nature</div>
+                                    <div class="text-xs text-slate-400">Trail maintenance, river sweeps, park builds</div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer border border-slate-600 rounded-xl p-4 flex items-center gap-3 hover:border-rotary-gold transition-all bg-slate-700/50">
+                                <input type="radio" name="interest" value="youth" class="accent-rotary-gold">
+                                <div>
+                                    <div class="font-bold text-white text-sm"><i class="fa-solid fa-graduation-cap text-rotary-gold mr-2"></i> Youth & Education</div>
+                                    <div class="text-xs text-slate-400">Mentorship, youth hub support, school supplies</div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer border border-slate-600 rounded-xl p-4 flex items-center gap-3 hover:border-rotary-gold transition-all bg-slate-700/50">
+                                <input type="radio" name="interest" value="events" class="accent-rotary-gold">
+                                <div>
+                                    <div class="font-bold text-white text-sm"><i class="fa-solid fa-bullhorn text-rotary-gold mr-2"></i> Events & Fundraising</div>
+                                    <div class="text-xs text-slate-400">Planning festivals, community drives, logistics</div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer border border-slate-600 rounded-xl p-4 flex items-center gap-3 hover:border-rotary-gold transition-all bg-slate-700/50">
+                                <input type="radio" name="interest" value="hands-on" class="accent-rotary-gold">
+                                <div>
+                                    <div class="font-bold text-white text-sm"><i class="fa-solid fa-hammer text-rotary-gold mr-2"></i> Building & Skilled Labor</div>
+                                    <div class="text-xs text-slate-400">Construction, repairs, physical projects</div>
+                                </div>
+                            </label>
+                        </div>
+                        <button onclick="calculateQuizResult()" class="w-full py-3.5 bg-rotary-gold hover:bg-rotary-goldHover text-rotary-navy font-bold rounded-xl text-center transition-all">
+                            Find My Volunteer Match <i class="fa-solid fa-sparkles ml-1"></i>
+                        </button>
+                    </div>
+
+                    <!-- Quiz Result View (Hidden initially) -->
+                    <div id="quiz-result" class="hidden text-center py-4">
+                        <div class="w-16 h-16 bg-rotary-gold/20 text-rotary-gold rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white font-heading" id="result-title">You're a Great Match for the Outdoor Trail Crew!</h3>
+                        <p class="text-slate-300 text-sm max-w-lg mx-auto my-3" id="result-desc">
+                            We have regular Saturday morning shifts where you can get outdoors, meet fellow nature lovers, and directly improve Transylvania County's trails.
+                        </p>
+                        <div class="pt-4 flex flex-col sm:flex-row justify-center gap-3">
+                            <button onclick="openRsvpModal('Custom Volunteer Match', 'Custom Match Interest')" class="px-6 py-3 bg-rotary-gold text-rotary-navy font-bold rounded-xl hover:bg-rotary-goldHover text-sm">
+                                Connect With This Group
+                            </button>
+                            <button onclick="resetQuiz()" class="px-6 py-3 bg-slate-700 text-slate-300 font-semibold rounded-xl hover:bg-slate-600 text-sm">
+                                Start Over
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="meeting" class="py-20 bg-slate-100 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
+                    <div class="grid grid-cols-1 lg:grid-cols-12">
+                        
+                        <!-- Details Side -->
+                        <div class="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rotary-sky text-rotary-blue font-bold text-xs uppercase mb-4">
+                                    <i class="fa-solid fa-door-open"></i> Visitors Always Welcome
+                                </div>
+                                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading mb-4">
+                                    Come Have Lunch With Us
+                                </h2>
+                                <p class="text-slate-600 mb-8 leading-relaxed">
+                                    No need to call ahead or wait for a special invitation. Stop by as our guest, grab lunch, and meet the people working behind the scenes in Brevard.
+                                </p>
+
+                                <div class="space-y-6">
+                                    <!-- When -->
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-12 h-12 rounded-xl bg-rotary-sky text-rotary-blue flex items-center justify-center text-xl shrink-0">
+                                            <i class="fa-regular fa-clock"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-slate-900">When We Meet</h4>
+                                            <p class="text-slate-600 text-sm">Every Wednesday at 12:00 PM – 1:00 PM EST</p>
+                                            <span class="text-xs text-slate-400">Lunch is served starting at 11:45 AM</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Where -->
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-12 h-12 rounded-xl bg-rotary-sky text-rotary-blue flex items-center justify-center text-xl shrink-0">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-slate-900">Where We Meet In-Person</h4>
+                                            <p class="text-slate-600 text-sm">The Brevard Music Center / Local Community Hall</p>
+                                            <p class="text-xs text-slate-500">349 Andante Lane, Brevard, NC 28712</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Zoom Option -->
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl shrink-0">
+                                            <i class="fa-solid fa-video"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-slate-900">Virtual / Hybrid Option</h4>
+                                            <p class="text-slate-600 text-sm">Can't make it in person? Join our live Zoom stream every Wednesday at noon.</p>
+                                            <a href="#" onclick="alert('Zoom Link requested! Link: https://zoom.us/j/brevardrotary (Sample)')" class="text-xs text-rotary-blue hover:underline font-semibold mt-1 inline-block">
+                                                Get Direct Zoom Link <i class="fa-solid fa-external-link text-[10px]"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-10 pt-6 border-t border-slate-100 flex flex-wrap items-center gap-4">
+                                <a href="https://maps.google.com" target="_blank" class="px-6 py-3 rounded-xl bg-rotary-blue text-white font-bold text-sm hover:bg-rotary-navy transition-all flex items-center gap-2">
+                                    <i class="fa-solid fa-map-location-dot"></i> Open in Google Maps
+                                </a>
+                                <button onclick="openRsvpModal('Lunch Guest RSVP', 'Wednesday @ 12:00 PM')" class="px-6 py-3 rounded-xl bg-slate-100 text-slate-700 font-bold text-sm hover:bg-slate-200 transition-all">
+                                    Notify Us You're Coming (Optional)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Visual Side Card -->
+                        <div class="lg:col-span-5 bg-rotary-navy p-8 sm:p-12 text-white flex flex-col justify-between relative overflow-hidden">
+                            <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl">
+                                <i class="fa-solid fa-dharmachakra"></i>
+                            </div>
+                            <div class="relative z-10">
+                                <h3 class="text-2xl font-bold font-heading text-rotary-gold mb-4">First Time Visiting?</h3>
+                                <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                    Here is what to expect when you drop in for a Wednesday meeting:
+                                </p>
+                                <ul class="space-y-4 text-sm text-slate-200">
+                                    <li class="flex items-start gap-3">
+                                        <i class="fa-solid fa-circle-check text-rotary-gold mt-1"></i>
+                                        <span><strong>Casual atmosphere:</strong> Wear whatever you wear to work or around town.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fa-solid fa-circle-check text-rotary-gold mt-1"></i>
+                                        <span><strong>Free lunch on us:</strong> First-time local visitors eat free!</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fa-solid fa-circle-check text-rotary-gold mt-1"></i>
+                                        <span><strong>Local guest speakers:</strong> Hear from county leaders, educators, and nonprofit directors.</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 pt-6 border-t border-white/10 relative z-10">
+                                <p class="text-xs text-slate-400">Have questions before coming?</p>
+                                <p class="text-sm font-semibold text-white mt-1">Email our Member Host: <a href="mailto:info@brevardrotary.org" class="text-rotary-gold underline">info@brevardrotary.org</a></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="text-rotary-blue font-bold text-sm tracking-wider uppercase">Local Voices</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading mt-2">Why Brevard Residents Join Us</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 relative">
+                        <div class="text-rotary-gold text-2xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-6">
+                            "I moved to Transylvania County 2 years ago and wanted a way to give back that didn't feel like endless committee meetings. With Rotary, I've literally helped build trail bridges and deliver school supplies."
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-slate-300 font-bold text-slate-700 flex items-center justify-center text-sm">
+                                MK
+                            </div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-sm">Mark K.</div>
+                                <div class="text-xs text-slate-500">Brevard Resident & Outdoor Volunteer</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 relative">
+                        <div class="text-rotary-gold text-2xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-6">
+                            "The focus on the TenTwentySix Youth Hub really sold me. It’s inspiring to see a group of neighbors raise real money and do real physical work for local kids right here in town."
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-slate-300 font-bold text-slate-700 flex items-center justify-center text-sm">
+                                SR
+                            </div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-sm">Sarah R.</div>
+                                <div class="text-xs text-slate-500">Local Small Business Owner</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 relative">
+                        <div class="text-rotary-gold text-2xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-6">
+                            "I was worried Rotary would be too formal for me. But after showing up to a Saturday stream cleanup in boots, I found my community. Everyone is warm, down-to-earth, and driven."
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-slate-300 font-bold text-slate-700 flex items-center justify-center text-sm">
+                                JL
+                            </div>
+                            <div>
+                                <div class="font-bold text-slate-900 text-sm">Jim L.</div>
+                                <div class="text-xs text-slate-500">Rosman Area Resident</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-rotary-blue text-white py-16 relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading mb-4">Ready to Make a Difference in Brevard?</h2>
+                <p class="text-slate-200 text-lg max-w-2xl mx-auto mb-8 font-light">
+                    Whether you have 2 hours a month or 2 hours a week, there’s a place for your hands and heart in our community.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button onclick="openRsvpModal('General Volunteer Sign-Up', 'Flexible Schedule')" class="px-8 py-4 bg-rotary-gold text-rotary-navy font-bold rounded-xl text-lg hover:bg-rotary-goldHover transition-all gold-glow">
+                        Sign Up as a Volunteer
+                    </button>
+                    <a href="#meeting" class="px-8 py-4 bg-white/10 border border-white/30 text-white font-bold rounded-xl text-lg hover:bg-white/20 transition-all">
+                        Visit Next Wednesday
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-rotary-navy text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-rotary-blue flex items-center justify-center text-rotary-gold font-bold text-xl">
+                        <i class="fa-solid fa-dharmachakra"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white font-heading">Rotary Club of Brevard</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Dedicated neighbors serving Brevard, Rosman, and all of Transylvania County through hands-on service, youth support, and community building.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-4 font-heading">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#about" class="hover:text-rotary-gold transition-colors">About Our Club</a></li>
+                    <li><a href="#impact" class="hover:text-rotary-gold transition-colors">Local Service Projects</a></li>
+                    <li><a href="#upcoming" class="hover:text-rotary-gold transition-colors">Upcoming Events Calendar</a></li>
+                    <li><a href="#meeting" class="hover:text-rotary-gold transition-colors">Meeting Location & Time</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-4 font-heading">Service Areas</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><span class="text-slate-300">Brevard, NC</span></li>
+                    <li><span class="text-slate-300">Rosman & Upper County</span></li>
+                    <li><span class="text-slate-300">Cedar Mountain</span></li>
+                    <li><span class="text-slate-300">Transylvania County Schools</span></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-4 font-heading">Contact & Connect</h4>
+                <p class="text-xs mb-2"><i class="fa-solid fa-envelope mr-2 text-rotary-gold"></i> info@brevardrotary.org</p>
+                <p class="text-xs mb-4"><i class="fa-solid fa-phone mr-2 text-rotary-gold"></i> 508-395-0224</p>
+                <div class="flex gap-3">
+                    <a href="https://facebook.com" target="_blank" class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-rotary-blue transition-colors"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-rotary-blue transition-colors"><i class="fa-brands fa-instagram text-xs"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+            <p>© 2026 Rotary Club of Brevard, NC. All rights reserved.</p>
+            <p class="text-slate-500">Affiliated with Rotary International District 7670</p>
+        </div>
+    </footer>
+
+    <!-- Volunteer RSVP Modal -->
+    <div id="rsvpModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100 animate-fadeIn">
+            <button onclick="closeRsvpModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl font-bold p-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-rotary-sky text-rotary-blue rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
+                    <i class="fa-solid fa-hands-clapping"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 font-heading">Get Involved</h3>
+                <p class="text-xs text-slate-500 mt-1" id="modal-event-title">Event Name Placeholder</p>
+            </div>
+
+            <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Your Name</label>
+                    <input type="text" required placeholder="e.g. Jane Doe" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rotary-blue text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Email Address</label>
+                    <input type="email" required placeholder="jane@example.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rotary-blue text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Phone Number (Optional for SMS updates)</label>
+                    <input type="tel" placeholder="(828) 555-0199" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rotary-blue text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Quick Note / Skill (Optional)</label>
+                    <textarea rows="2" placeholder="e.g. Bringing my truck / excited to help out!" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rotary-blue text-sm"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 bg-rotary-gold hover:bg-rotary-goldHover text-rotary-navy font-bold rounded-xl text-sm transition-all shadow-md">
+                    Confirm My RSVP
+                </button>
+            </form>
+            <p class="text-[11px] text-center text-slate-400 mt-3">We respect your privacy. No spam ever.</p>
+        </div>
+    </div>
+
+    <!-- Success Feedback Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-rotary-navy text-white px-6 py-4 rounded-xl shadow-2xl border border-rotary-gold hidden z-50 flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-rotary-gold text-xl"></i>
+        <div>
+            <div class="font-bold text-sm">You're All Set!</div>
+            <div class="text-xs text-slate-300">We've received your RSVP. See you soon in Brevard!</div>
+        </div>
+    </div>
+
+    <script>
+        
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars text-xl';
+            } else {
+                icon.className = 'fa-solid fa-xmark text-xl';
+            }
+        }
+
+        // Project Filtering
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const btns = document.querySelectorAll('.project-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-rotary-blue', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-600');
+            });
+
+            event.target.classList.remove('bg-white', 'text-slate-600');
+            event.target.classList.add('bg-rotary-blue', 'text-white');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // RSVP Modal Handlers
+        function openRsvpModal(title, details) {
+            document.getElementById('modal-event-title').innerText = title + ' (' + details + ')';
+            document.getElementById('rsvpModal').classList.remove('hidden');
+        }
+
+        function closeRsvpModal() {
+            document.getElementById('rsvpModal').classList.add('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            closeRsvpModal();
+            
+            // Show Toast Notification
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Quiz Logic
+        function calculateQuizResult() {
+            const selected = document.querySelector('input[name="interest"]:checked').value;
+            const step1 = document.getElementById('quiz-step-1');
+            const result = document.getElementById('quiz-result');
+            const title = document.getElementById('result-title');
+            const desc = document.getElementById('result-desc');
+
+            step1.classList.add('hidden');
+            result.classList.remove('hidden');
+
+            if (selected === 'outdoors') {
+                title.innerText = "You're a Match for the Outdoor & Trail Crew!";
+                desc.innerText = "We have regular Saturday shifts doing greenway care, river sweeps, and trail work across Brevard & Pisgah boundaries.";
+            } else if (selected === 'youth') {
+                title.innerText = "You're a Match for Youth & Education Mentorship!";
+                desc.innerText = "Help us support the TenTwentySix Youth Hub, local scholarships, and school backpack food distribution projects.";
+            } else if (selected === 'events') {
+                title.innerText = "You're a Match for Community Event Planning!";
+                desc.innerText = "Bring your energy to community fundraisers, food drives, and local festival booths.";
+            } else {
+                title.innerText = "You're a Match for Hands-On Build Projects!";
+                desc.innerText = "Join our team on ramp builds, facility upgrades, and physical community restoration efforts.";
+            }
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-step-1').classList.remove('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
