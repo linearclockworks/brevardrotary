@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: linearclockworks/brevardrotary
+  branch: main
+  base_url: https://brevardrotary.vercel.app # Update this to your live Vercel domain
+  auth_endpoint: api/auth
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "announcements"
+    label: "Announcements"
+    folder: "content/announcements"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
