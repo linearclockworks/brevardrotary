@@ -18,19 +18,29 @@ export default async function handler(req, res) {
     const data = await response.json();
     const token = data.access_token;
 
-  const html = `
-    <script>
-      const token = "${token}";
-      const provider = "github";
-      if (window.opener) {
-        window.opener.postMessage('authorization:' + provider + ':success:{"token":"' + token + '","provider":"' + provider + '"}', '*');
-        window.close();
-      }
-    </script>
-  `;
+    const html = `
+      <!DOCTYPE html>
+      <html>
+        <body>
+          <script>
+            (function() {
+              function receiveMessage(e) {
+                console.log("receiveMessage", e);
+                window.opener.postMessage(
+                  'authorization:github:success:${JSON.stringify({ token: token, provider: "github" })}',
+                  e.origin
+                );
+              }
+              window.addEventListener("message", receiveMessage, false);
+              window.opener.postMessage("authorizing:github", "*");
+            })();
+          </script>
+        </body>
+      </html>
+    `;
 
-res.setHeader("Content-Type", "text/html");
-    res.status(200).send(content);
+    res.setHeader("Content-Type", "text/html");
+    res.status(200).send(html);
   } catch (error) {
     res.status(500).send(error.message);
   }
