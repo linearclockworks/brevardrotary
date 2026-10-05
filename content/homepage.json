@@ -6,16 +6,28 @@
   },
   "hero": {
     "location_badge": "Serving Brevard, Rosman, & Transylvania County",
-    "headline": "Roll up your sleeves with neighbors who care deeply about Brevard.",
+    "headline": "Roll up your sleeves with neighbors who reallly do about Brevard.",
     "subheadline": "No suit required. No bureaucracy. Just hands-on local service, supporting youth centers, cleaning trails, and building a stronger community right here in our backyard.",
     "primary_cta": "Get Involved This Weekend",
     "secondary_cta": "Join Us For Lunch"
   },
   "metrics": [
-    { "value": "$45,000+", "label": "Invested in Local Youth & Schools" },
-    { "value": "1,200+", "label": "Volunteer Hours Spent Outdoors" },
-    { "value": "12", "label": "Transylvania Nonprofits Partnered" },
-    { "value": "100%", "label": "Hands-On Action Every Month" }
+    {
+      "value": "$45,000+",
+      "label": "Invested in Local Youth & Schools"
+    },
+    {
+      "value": "1,200+",
+      "label": "Volunteer Hours Spent Outdoors"
+    },
+    {
+      "value": "12",
+      "label": "Transylvania Nonprofits Partnered"
+    },
+    {
+      "value": "100%",
+      "label": "Hands-On Action Every Month"
+    }
   ],
   "events": [
     {
