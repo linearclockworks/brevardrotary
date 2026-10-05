@@ -1,7 +1,7 @@
 {
   "top_banner": {
-    "badge": "Next Event",
-    "message": "French Broad River Clean-up & Trail Care — This Saturday at 9:00 AM",
+    "badge": "PumpkinFest! Friday Oct 9. ",
+    "message": "Rotary is sponsoring Friday night with free children’s tickets and glow sticks. ",
     "cta_text": "RSVP in 30 Seconds"
   },
   "hero": {
@@ -32,11 +32,11 @@
   "events": [
     {
       "month": "OCT",
-      "day": "12",
-      "category": "Outdoors & Environment",
-      "title": "French Broad River Trail Sweep",
-      "time": "9:00 AM – 12:00 PM",
-      "location": "Champion Park Trailhead, Brevard"
+      "day": "9",
+      "category": "Community Festival",
+      "title": "PumpkinFest",
+      "time": "6-9 PM",
+      "location": "Silvermont Park"
     },
     {
       "month": "OCT",
