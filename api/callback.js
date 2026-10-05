@@ -8,8 +8,8 @@ export default async function handler(req, res) {
       Accept: "application/json",
     },
     body: JSON.stringify({
-      client_id: Ov23liYWONnxQSOvEZfO,
-      client_secret: d862c6fddec4a6684832df3b46a74f569e24ba21,
+      client_id: process.env.OAUTH_GITHUB_CLIENT_ID,
+      client_secret: process.env.OAUTH_GITHUB_CLIENT_SECRET,
       code,
     }),
   });
@@ -18,7 +18,14 @@ export default async function handler(req, res) {
   const token = data.access_token;
 
   const html = `
-    
+    <script>
+      const token = "${token}";
+      const provider = "github";
+      if (window.opener) {
+        window.opener.postMessage('authorization:' + provider + ':success:{"token":"' + token + '","provider":"' + provider + '"}', '*');
+        window.close();
+      }
+    </script>
   `;
 
   res.setHeader("Content-Type", "text/html");
