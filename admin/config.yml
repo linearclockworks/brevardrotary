@@ -9,12 +9,45 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "announcements"
-    label: "Announcements"
-    folder: "content/announcements"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "content/homepage.json"
+        label: "Homepage Content"
+        name: "homepage"
+        fields:
+          - label: "Top Notification Banner"
+            name: "top_banner"
+            widget: "object"
+            fields:
+              - { label: "Badge Text", name: "badge", widget: "string" }
+              - { label: "Banner Message", name: "message", widget: "string" }
+              - { label: "CTA Button Text", name: "cta_text", widget: "string" }
+
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Location Badge", name: "location_badge", widget: "string" }
+              - { label: "Main Headline", name: "headline", widget: "string" }
+              - { label: "Subheadline / Paragraph", name: "subheadline", widget: "text" }
+              - { label: "Primary Button Text", name: "primary_cta", widget: "string" }
+              - { label: "Secondary Button Text", name: "secondary_cta", widget: "string" }
+
+          - label: "Key Metrics (4 Stat Boxes)"
+            name: "metrics"
+            widget: "list"
+            fields:
+              - { label: "Stat Value (e.g. $45,000+)", name: "value", widget: "string" }
+              - { label: "Stat Label", name: "label", widget: "string" }
+
+          - label: "Upcoming Events"
+            name: "events"
+            widget: "list"
+            fields:
+              - { label: "Month Abbreviation (e.g. OCT)", name: "month", widget: "string" }
+              - { label: "Day Number (e.g. 12)", name: "day", widget: "string" }
+              - { label: "Category Badge", name: "category", widget: "string" }
+              - { label: "Event Title", name: "title", widget: "string" }
+              - { label: "Time Range", name: "time", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }

@@ -1,0 +1,46 @@
+{
+  "top_banner": {
+    "badge": "Next Event",
+    "message": "French Broad River Clean-up & Trail Care — This Saturday at 9:00 AM",
+    "cta_text": "RSVP in 30 Seconds"
+  },
+  "hero": {
+    "location_badge": "Serving Brevard, Rosman, & Transylvania County",
+    "headline": "Roll up your sleeves with neighbors who care deeply about Brevard.",
+    "subheadline": "No suit required. No bureaucracy. Just hands-on local service, supporting youth centers, cleaning trails, and building a stronger community right here in our backyard.",
+    "primary_cta": "Get Involved This Weekend",
+    "secondary_cta": "Join Us For Lunch"
+  },
+  "metrics": [
+    { "value": "$45,000+", "label": "Invested in Local Youth & Schools" },
+    { "value": "1,200+", "label": "Volunteer Hours Spent Outdoors" },
+    { "value": "12", "label": "Transylvania Nonprofits Partnered" },
+    { "value": "100%", "label": "Hands-On Action Every Month" }
+  ],
+  "events": [
+    {
+      "month": "OCT",
+      "day": "12",
+      "category": "Outdoors & Environment",
+      "title": "French Broad River Trail Sweep",
+      "time": "9:00 AM – 12:00 PM",
+      "location": "Champion Park Trailhead, Brevard"
+    },
+    {
+      "month": "OCT",
+      "day": "24",
+      "category": "Youth Mentorship",
+      "title": "TenTwentySix Youth Hub Career Day",
+      "time": "4:00 PM – 6:30 PM",
+      "location": "1026 Youth Hub, Main St Brevard"
+    },
+    {
+      "month": "NOV",
+      "day": "08",
+      "category": "Community Festival",
+      "title": "Rosman Fall Community Food Drive",
+      "time": "10:00 AM – 2:00 PM",
+      "location": "Rosman Community Center"
+    }
+  ]
+}
