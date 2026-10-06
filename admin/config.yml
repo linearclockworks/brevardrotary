@@ -34,6 +34,14 @@ collections:
               - { label: "Primary Button Text", name: "primary_cta", widget: "string" }
               - { label: "Secondary Button Text", name: "secondary_cta", widget: "string" }
 
+          - label: "Meeting Information"
+            name: "meeting"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow Text", name: "eyebrow", widget: "string" }
+              - { label: "Section Heading", name: "heading", widget: "string" }
+              - { label: "Meeting Details", name: "details", widget: "text" }
+
           - label: "Key Metrics (4 Stat Boxes)"
             name: "metrics"
             widget: "list"

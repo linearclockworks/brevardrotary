@@ -11,6 +11,11 @@
     "primary_cta": "Get Involved This Weekend",
     "secondary_cta": "Join Us For Lunch"
   },
+  "meeting": {
+    "eyebrow": "Join Us for Lunch",
+    "heading": "Where We Meet",
+    "details": "We meet at noon on Tuesdays, either at the Depot or in the back room at Cup and Saucer."
+  },
   "metrics": [
     {
       "value": "$45,000+",

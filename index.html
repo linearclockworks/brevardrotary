@@ -205,9 +205,9 @@
                     <div class="w-14 h-14 mx-auto rounded-full bg-rotary-blue text-rotary-gold flex items-center justify-center text-2xl mb-5">
                         <i class="fa-solid fa-users" aria-hidden="true"></i>
                     </div>
-                    <span class="text-rotary-blue font-bold text-sm tracking-wider uppercase">Join Us for Lunch</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading mt-2">Where We Meet</h2>
-                    <p class="text-lg text-slate-700 mt-4">
+                    <span id="cms-meeting-eyebrow" class="text-rotary-blue font-bold text-sm tracking-wider uppercase">Join Us for Lunch</span>
+                    <h2 id="cms-meeting-heading" class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading mt-2">Where We Meet</h2>
+                    <p id="cms-meeting-details" class="text-lg text-slate-700 mt-4">
                         We meet at noon on Tuesdays, either at the Depot or in the back room at Cup and Saucer.
                     </p>
                 </div>
@@ -249,7 +249,14 @@ function openRsvpModal(title, details) {
                     if (data.hero.secondary_cta) document.getElementById('cms-hero-secondary-cta').innerHTML = `<i class="fa-solid fa-users"></i> ${data.hero.secondary_cta}`;
                 }
 
-                // 3. Populate Metrics
+                // 3. Populate Meeting Information
+                if (data.meeting) {
+                    if (data.meeting.eyebrow) document.getElementById('cms-meeting-eyebrow').textContent = data.meeting.eyebrow;
+                    if (data.meeting.heading) document.getElementById('cms-meeting-heading').textContent = data.meeting.heading;
+                    if (data.meeting.details) document.getElementById('cms-meeting-details').textContent = data.meeting.details;
+                }
+
+                // 4. Populate Metrics
                 if (data.metrics && data.metrics.length > 0) {
                     const metricsGrid = document.getElementById('cms-metrics-grid');
                     metricsGrid.innerHTML = data.metrics.map(m => `
@@ -260,7 +267,7 @@ function openRsvpModal(title, details) {
                     `).join('');
                 }
 
-                // 4. Populate Events
+                // 5. Populate Events
                 if (data.events && data.events.length > 0) {
                     const eventsList = document.getElementById('cms-events-list');
                     eventsList.innerHTML = data.events.map((e, index) => `
